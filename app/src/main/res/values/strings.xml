@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">TestJob</string>
+    <string name="cards">Карточки</string>
+    <string name="mycontacts">Мои контакты</string>
 </resources>
