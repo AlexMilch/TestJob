@@ -9,9 +9,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
+
+import java.util.List;
 
 import ae.milch.testjob.R;
 import ae.milch.testjob.models.CommentModelResponse;
@@ -22,55 +25,47 @@ import ae.milch.testjob.models.usermodel.UserModelResponse;
 
 public class CardsFragment extends Fragment implements MainActivityView {
 
-    EditText etPost;
-    Button btnLoadPost;
-    TextView tvTitlePost;
-    TextView tvBodyPost;
+    private EditText etPost;
+    private Button btnLoadPost;
+    private TextView tvTitlePost;
+    private TextView tvBodyPost;
 
-    EditText etComment;
-    Button btnLoadComment;
-    TextView tvNameComment;
-    TextView tvEmailComment;
-    TextView tvBodyComment;
+    private EditText etComment;
+    private Button btnLoadComment;
+    private TextView tvNameComment;
+    private TextView tvEmailComment;
+    private TextView tvBodyComment;
 
-    TextView tvNameUser1;
-    TextView tvNameUser2;
-    TextView tvNameUser3;
-    TextView tvNameUser4;
-    TextView tvNameUser5;
+    private SimpleDraweeView ivPhoto;
 
-    SimpleDraweeView ivPhoto;
+    private TextView tvTitleTodos;
+    private TextView tvCompletedTodos;
 
-    TextView tvTitleTodos;
-    TextView tvCompletedTodos;
+    private MainActivityPresenter presenter = new MainActivityPresenter(this);
 
-    MainActivityPresenter presenter = new MainActivityPresenter(this);
+    private LinearLayout llUserContainer;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_cards, container, false);
-        etPost = view.findViewById(R.id.etPost);
-        btnLoadPost = view.findViewById(R.id.btnLoadPost);
-        tvTitlePost = view.findViewById(R.id.tvTitlePost);
-        tvBodyPost = view.findViewById(R.id.tvBodyPost);
+        etPost = view.findViewById(R.id.et_post);
+        btnLoadPost = view.findViewById(R.id.btn_load_post);
+        tvTitlePost = view.findViewById(R.id.tv_title_post);
+        tvBodyPost = view.findViewById(R.id.tv_body_post);
 
-        etComment = view.findViewById(R.id.etComment);
-        btnLoadComment = view.findViewById(R.id.btnLoadComment);
-        tvNameComment = view.findViewById(R.id.tvNameComment);
-        tvEmailComment = view.findViewById(R.id.tvEmailComment);
-        tvBodyComment = view.findViewById(R.id.tvBodyComment);
+        etComment = view.findViewById(R.id.et_comment);
+        btnLoadComment = view.findViewById(R.id.btn_load_comment);
+        tvNameComment = view.findViewById(R.id.tv_name_comment);
+        tvEmailComment = view.findViewById(R.id.tv_email_comment);
+        tvBodyComment = view.findViewById(R.id.tv_body_comment);
 
-        tvNameUser1 = view.findViewById(R.id.tvNameUser1);
-        tvNameUser2 = view.findViewById(R.id.tvNameUser2);
-        tvNameUser3 = view.findViewById(R.id.tvNameUser3);
-        tvNameUser4 = view.findViewById(R.id.tvNameUser4);
-        tvNameUser5 = view.findViewById(R.id.tvNameUser5);
+        llUserContainer = view.findViewById(R.id.ll_user_container);
 
-        ivPhoto = view.findViewById(R.id.ivPhoto);
+        ivPhoto = view.findViewById(R.id.iv_photo);
 
-        tvTitleTodos = view.findViewById(R.id.tvTitleTodos);
-        tvCompletedTodos = view.findViewById(R.id.tvCompletedTodos);
+        tvTitleTodos = view.findViewById(R.id.tv_title_todos);
+        tvCompletedTodos = view.findViewById(R.id.tv_completed_todos);
 
         return view;
     }
@@ -108,7 +103,7 @@ public class CardsFragment extends Fragment implements MainActivityView {
     }
 
     private void loadUser() {
-        presenter.loadUser(1);
+        presenter.loadUser();
     }
 
     private void loadPhoto() {
@@ -133,12 +128,11 @@ public class CardsFragment extends Fragment implements MainActivityView {
     }
 
     @Override
-    public void outputUserData(UserModelResponse user) {
-        tvNameUser1.setText(user.getName());
-        tvNameUser2.setText(user.getName());
-        tvNameUser3.setText(user.getName());
-        tvNameUser4.setText(user.getName());
-        tvNameUser5.setText(user.getName());
+    public void outputUserData(List<UserModelResponse> userList) {
+        for (int i = 0; i < 5; i++) {
+            UserView userView = llUserContainer.findViewWithTag(String.valueOf(i + 1));
+            userView.setup(userList.get(i), i);
+        }
     }
 
     @Override

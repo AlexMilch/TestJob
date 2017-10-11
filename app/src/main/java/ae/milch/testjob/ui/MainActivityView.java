@@ -1,5 +1,7 @@
 package ae.milch.testjob.ui;
 
+import java.util.List;
+
 import ae.milch.testjob.models.CommentModelResponse;
 import ae.milch.testjob.models.PhotoModelResponse;
 import ae.milch.testjob.models.PostModelResponse;
@@ -11,7 +13,7 @@ public interface MainActivityView {
 
     void outputCommentData(CommentModelResponse comment);
 
-    void outputUserData(UserModelResponse userModelResponse);
+    void outputUserData(List<UserModelResponse> userList);
 
     void outputPhoto(PhotoModelResponse photoModelResponse);
 

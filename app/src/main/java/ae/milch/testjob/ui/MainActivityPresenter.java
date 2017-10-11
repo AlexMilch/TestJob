@@ -1,5 +1,7 @@
 package ae.milch.testjob.ui;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 import ae.milch.testjob.domain.ApiService;
@@ -9,6 +11,7 @@ import ae.milch.testjob.models.PhotoModelResponse;
 import ae.milch.testjob.models.PostModelResponse;
 import ae.milch.testjob.models.TodosModelResponse;
 import ae.milch.testjob.models.usermodel.UserModelResponse;
+import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
@@ -59,15 +62,20 @@ public class MainActivityPresenter {
                         });
     }
 
-    public void loadUser(int id) {
+    public void loadUser() {
         ApiService apiService = new NetworkModule().createService();
-        apiService.getUserById(id)
+        List<Observable<UserModelResponse>> observableList = new ArrayList<>();
+        for (int i = 1; i < 6; i++) {
+            observableList.add(apiService.getUserById(i));
+        }
+        Observable.concat(observableList)
+                .toList()
                 .subscribeOn(Schedulers.computation())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Consumer<UserModelResponse>() {
+                .subscribe(new Consumer<List<UserModelResponse>>() {
                                @Override
-                               public void accept(UserModelResponse userModelResponse) throws Exception {
-                                   view.outputUserData(userModelResponse);
+                               public void accept(List<UserModelResponse> userList) throws Exception {
+                                   view.outputUserData(userList);
                                }
                            },
                         new Consumer<Throwable>() {
