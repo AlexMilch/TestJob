@@ -1,5 +1,6 @@
-package ae.milch.testjob;
+package ae.milch.testjob.ui;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -10,8 +11,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import ae.milch.testjob.models.ModelCommentResponse;
-import ae.milch.testjob.models.ModelPostResponse;
+import com.facebook.drawee.view.SimpleDraweeView;
+
+import ae.milch.testjob.R;
+import ae.milch.testjob.models.CommentModelResponse;
+import ae.milch.testjob.models.PhotoModelResponse;
+import ae.milch.testjob.models.PostModelResponse;
+import ae.milch.testjob.models.TodosModelResponse;
+import ae.milch.testjob.models.usermodel.UserModelResponse;
 
 public class CardsFragment extends Fragment implements MainActivityView {
 
@@ -26,6 +33,16 @@ public class CardsFragment extends Fragment implements MainActivityView {
     TextView tvEmailComment;
     TextView tvBodyComment;
 
+    TextView tvNameUser1;
+    TextView tvNameUser2;
+    TextView tvNameUser3;
+    TextView tvNameUser4;
+    TextView tvNameUser5;
+
+    SimpleDraweeView ivPhoto;
+
+    TextView tvTitleTodos;
+    TextView tvCompletedTodos;
 
     MainActivityPresenter presenter = new MainActivityPresenter(this);
 
@@ -44,12 +61,30 @@ public class CardsFragment extends Fragment implements MainActivityView {
         tvEmailComment = view.findViewById(R.id.tvEmailComment);
         tvBodyComment = view.findViewById(R.id.tvBodyComment);
 
+        tvNameUser1 = view.findViewById(R.id.tvNameUser1);
+        tvNameUser2 = view.findViewById(R.id.tvNameUser2);
+        tvNameUser3 = view.findViewById(R.id.tvNameUser3);
+        tvNameUser4 = view.findViewById(R.id.tvNameUser4);
+        tvNameUser5 = view.findViewById(R.id.tvNameUser5);
+
+        ivPhoto = view.findViewById(R.id.ivPhoto);
+
+        tvTitleTodos = view.findViewById(R.id.tvTitleTodos);
+        tvCompletedTodos = view.findViewById(R.id.tvCompletedTodos);
+
         return view;
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        loadPost(etPost.getText().toString());
+        loadComment(etComment.getText().toString());
+        loadUser();
+        loadPhoto();
+        loadTodos();
+
         btnLoadPost.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -72,16 +107,48 @@ public class CardsFragment extends Fragment implements MainActivityView {
         presenter.loadPost(id);
     }
 
+    private void loadUser() {
+        presenter.loadUser(1);
+    }
+
+    private void loadPhoto() {
+        presenter.loadPhoto(3);
+    }
+
+    private void loadTodos() {
+        presenter.loadTodos();
+    }
+
     @Override
-    public void outputPostData(ModelPostResponse post) {
+    public void outputPostData(PostModelResponse post) {
         tvTitlePost.setText(post.getTitle());
         tvBodyPost.setText(post.getBody());
     }
 
     @Override
-    public void outputCommentData(ModelCommentResponse comment) {
+    public void outputCommentData(CommentModelResponse comment) {
         tvNameComment.setText(comment.getName());
         tvEmailComment.setText(comment.getEmail());
         tvBodyComment.setText(comment.getBody());
+    }
+
+    @Override
+    public void outputUserData(UserModelResponse user) {
+        tvNameUser1.setText(user.getName());
+        tvNameUser2.setText(user.getName());
+        tvNameUser3.setText(user.getName());
+        tvNameUser4.setText(user.getName());
+        tvNameUser5.setText(user.getName());
+    }
+
+    @Override
+    public void outputPhoto(PhotoModelResponse photoModelResponse) {
+        ivPhoto.setImageURI(Uri.parse(photoModelResponse.getUrl()));
+    }
+
+    @Override
+    public void outputTodos(TodosModelResponse todos) {
+        tvTitleTodos.setText(todos.getTitle());
+        tvCompletedTodos.setText(todos.getCompleted());
     }
 }

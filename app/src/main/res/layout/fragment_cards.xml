@@ -32,8 +32,8 @@
                     <TextView
                         android:layout_width="160dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
                         android:layout_gravity="center"
+                        android:layout_marginLeft="10dp"
                         android:text="id поста: "
                         android:textSize="20sp" />
 
@@ -41,19 +41,19 @@
                         android:id="@+id/etPost"
                         android:layout_width="60dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
                         android:layout_gravity="center"
-                        android:text="2"
+                        android:layout_marginLeft="5dp"
+                        android:text="1"
                         android:textAlignment="center" />
 
                     <Button
                         android:id="@+id/btnLoadPost"
                         android:layout_width="110dp"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center"
                         android:layout_marginBottom="10dp"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
-                        android:layout_gravity="center"
                         android:background="@color/colorGreen"
                         android:text="Подтвердить" />
 
@@ -68,14 +68,12 @@
                         android:id="@+id/tvTitlePost"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="sunt aut facere repellat provident occaecati excepturi optio reprehenderit"
                         android:textSize="30sp" />
 
                     <TextView
                         android:id="@+id/tvBodyPost"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto"
                         android:textSize="20sp" />
                 </LinearLayout>
             </LinearLayout>
@@ -112,10 +110,10 @@
                         android:id="@+id/etComment"
                         android:layout_width="60dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
                         android:layout_gravity="center"
+                        android:layout_marginLeft="5dp"
                         android:layout_weight="0.72"
-                        android:text="2"
+                        android:text="1"
                         android:textAlignment="center" />
 
                     <Button
@@ -138,23 +136,140 @@
                         android:id="@+id/tvNameComment"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="id labore ex et quam laborum"
                         android:textSize="30sp" />
 
                     <TextView
                         android:id="@+id/tvEmailComment"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Eliseo@gardner.biz"
                         android:textSize="20sp" />
 
                     <TextView
                         android:id="@+id/tvBodyComment"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="laudantium enim quasi est quidem magnam voluptate ipsam eos\ntempora quo necessitatibus\ndolor quam autem quasi\nreiciendis et nam sapiente accusantium"
                         android:textSize="20sp" />
                 </LinearLayout>
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="5dp"
+            app:cardCornerRadius="2dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tvNameUser1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="20sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tvNameUser2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="20sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tvNameUser3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="20sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tvNameUser4"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="20sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tvNameUser5"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="20sp" />
+
+                </LinearLayout>
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="5dp"
+            app:cardCornerRadius="2dp">
+
+            <com.facebook.drawee.view.SimpleDraweeView
+                android:id="@+id/ivPhoto"
+                android:layout_width="match_parent"
+                android:layout_height="150dp" />
+
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="5dp"
+            app:cardCornerRadius="2dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tvTitleTodos"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/tvCompletedTodos"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
             </LinearLayout>
         </android.support.v7.widget.CardView>
 

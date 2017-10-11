@@ -2,13 +2,11 @@ package ae.milch.testjob.models;
 
 import com.google.gson.annotations.SerializedName;
 
-public class ModelCommentResponse {
+public class PostModelResponse {
     @SerializedName("id")
     private int id;
-    @SerializedName("name")
-    private String name;
-    @SerializedName("email")
-    private String email;
+    @SerializedName("title")
+    private String title;
     @SerializedName("body")
     private String body;
 
@@ -20,20 +18,12 @@ public class ModelCommentResponse {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getTitle() {
+        return title;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getBody() {

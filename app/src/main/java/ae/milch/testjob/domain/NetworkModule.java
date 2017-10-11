@@ -1,4 +1,4 @@
-package ae.milch.testjob;
+package ae.milch.testjob.domain;
 
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
