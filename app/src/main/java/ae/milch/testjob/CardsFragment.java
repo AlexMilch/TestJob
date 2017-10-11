@@ -1,4 +1,5 @@
 package ae.milch.testjob;
+
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -9,24 +10,40 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import ae.milch.testjob.models.ModelCommentResponse;
 import ae.milch.testjob.models.ModelPostResponse;
 
-public class CardsFragment extends Fragment implements PostView{
+public class CardsFragment extends Fragment implements MainActivityView {
 
+    EditText etPost;
     Button btnLoadPost;
     TextView tvTitlePost;
     TextView tvBodyPost;
-    EditText etPost;
+
+    EditText etComment;
+    Button btnLoadComment;
+    TextView tvNameComment;
+    TextView tvEmailComment;
+    TextView tvBodyComment;
+
+
     MainActivityPresenter presenter = new MainActivityPresenter(this);
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view =  inflater.inflate(R.layout.fragment_cards, container, false);
-        btnLoadPost = (Button) view.findViewById(R.id.btnPost);
-        tvTitlePost = (TextView) view.findViewById(R.id.tvTitlePost);
-        tvBodyPost= (TextView) view.findViewById(R.id.tvBodyPost);
-        etPost= (EditText) view.findViewById(R.id.etPost);
+        View view = inflater.inflate(R.layout.fragment_cards, container, false);
+        etPost = view.findViewById(R.id.etPost);
+        btnLoadPost = view.findViewById(R.id.btnLoadPost);
+        tvTitlePost = view.findViewById(R.id.tvTitlePost);
+        tvBodyPost = view.findViewById(R.id.tvBodyPost);
+
+        etComment = view.findViewById(R.id.etComment);
+        btnLoadComment = view.findViewById(R.id.btnLoadComment);
+        tvNameComment = view.findViewById(R.id.tvNameComment);
+        tvEmailComment = view.findViewById(R.id.tvEmailComment);
+        tvBodyComment = view.findViewById(R.id.tvBodyComment);
+
         return view;
     }
 
@@ -39,6 +56,16 @@ public class CardsFragment extends Fragment implements PostView{
                 loadPost(etPost.getText().toString());
             }
         });
+        btnLoadComment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                loadComment(etComment.getText().toString());
+            }
+        });
+    }
+
+    private void loadComment(String id) {
+        presenter.loadComment(id);
     }
 
     public void loadPost(String id) {
@@ -46,9 +73,15 @@ public class CardsFragment extends Fragment implements PostView{
     }
 
     @Override
-    public void onPostLoaded(ModelPostResponse post) {
+    public void outputPostData(ModelPostResponse post) {
         tvTitlePost.setText(post.getTitle());
         tvBodyPost.setText(post.getBody());
-        System.out.println("QQQ" + post.getTitle());
+    }
+
+    @Override
+    public void outputCommentData(ModelCommentResponse comment) {
+        tvNameComment.setText(comment.getName());
+        tvEmailComment.setText(comment.getEmail());
+        tvBodyComment.setText(comment.getBody());
     }
 }

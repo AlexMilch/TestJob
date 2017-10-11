@@ -1,5 +1,6 @@
 package ae.milch.testjob;
 
+import ae.milch.testjob.models.ModelCommentResponse;
 import ae.milch.testjob.models.ModelPostResponse;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Consumer;
@@ -7,9 +8,9 @@ import io.reactivex.schedulers.Schedulers;
 
 public class MainActivityPresenter {
 
-    private final PostView view;
+    private final MainActivityView view;
 
-    public MainActivityPresenter(PostView view) {
+    public MainActivityPresenter(MainActivityView view) {
         this.view = view;
     }
 
@@ -21,7 +22,7 @@ public class MainActivityPresenter {
                 .subscribe(new Consumer<ModelPostResponse>() {
                                @Override
                                public void accept(ModelPostResponse modelPostResponse) throws Exception {
-                                   view.onPostLoaded(modelPostResponse);
+                                   view.outputPostData(modelPostResponse);
                                }
                            },
                         new Consumer<Throwable>() {
@@ -37,10 +38,10 @@ public class MainActivityPresenter {
         apiService.getCommentById(id)
                 .subscribeOn(Schedulers.computation())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Consumer<ModelPostResponse>() {
+                .subscribe(new Consumer<ModelCommentResponse>() {
                                @Override
-                               public void accept(ModelPostResponse modelPostResponse) throws Exception {
-                                   view.onPostLoaded(modelPostResponse);
+                               public void accept(ModelCommentResponse modelCommentResponse) throws Exception {
+                                   view.outputCommentData(modelCommentResponse);
                                }
                            },
                         new Consumer<Throwable>() {
