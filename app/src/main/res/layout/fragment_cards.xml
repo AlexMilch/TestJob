@@ -72,7 +72,6 @@
 
                     <EditText
                         android:id="@+id/et_post"
-                        android:inputType="number"
                         android:layout_width="60dp"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
@@ -82,6 +81,7 @@
                         android:layout_toLeftOf="@+id/btn_load_post"
                         android:layout_toStartOf="@+id/btn_load_post"
                         android:background="@android:drawable/dialog_holo_light_frame"
+                        android:inputType="number"
                         android:text="1"
                         android:textAlignment="center" />
 
@@ -183,6 +183,7 @@
                         android:layout_toLeftOf="@+id/btn_load_comment"
                         android:layout_toStartOf="@+id/btn_load_comment"
                         android:background="@android:drawable/dialog_holo_light_frame"
+                        android:inputType="number"
                         android:text="1"
                         android:textAlignment="center" />
 
