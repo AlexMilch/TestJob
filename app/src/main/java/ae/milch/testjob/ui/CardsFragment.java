@@ -4,6 +4,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.text.InputFilter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +17,7 @@ import com.facebook.drawee.view.SimpleDraweeView;
 
 import java.util.List;
 
+import ae.milch.testjob.InputFilterMinMax;
 import ae.milch.testjob.R;
 import ae.milch.testjob.models.CommentModelResponse;
 import ae.milch.testjob.models.PhotoModelResponse;
@@ -50,11 +52,13 @@ public class CardsFragment extends Fragment implements MainActivityView {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_cards, container, false);
         etPost = view.findViewById(R.id.et_post);
+        etPost.setFilters(new InputFilter[]{new InputFilterMinMax("1", "100", "Введите id поста от 1 до 100", getContext())});
         btnLoadPost = view.findViewById(R.id.btn_load_post);
         tvTitlePost = view.findViewById(R.id.tv_title_post);
         tvBodyPost = view.findViewById(R.id.tv_body_post);
 
         etComment = view.findViewById(R.id.et_comment);
+        etPost.setFilters(new InputFilter[]{new InputFilterMinMax("1", "500", "Введите id комментария от 1 до 500", getContext())});
         btnLoadComment = view.findViewById(R.id.btn_load_comment);
         tvNameComment = view.findViewById(R.id.tv_name_comment);
         tvEmailComment = view.findViewById(R.id.tv_email_comment);
@@ -73,7 +77,6 @@ public class CardsFragment extends Fragment implements MainActivityView {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
         loadPost(etPost.getText().toString());
         loadComment(etComment.getText().toString());
         loadUser();
